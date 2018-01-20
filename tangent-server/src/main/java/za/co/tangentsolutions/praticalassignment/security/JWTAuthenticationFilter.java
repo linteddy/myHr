@@ -2,6 +2,7 @@ package za.co.tangentsolutions.praticalassignment.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -16,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+
+import static za.co.tangentsolutions.praticalassignment.security.SecurityConstants.*;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private AuthenticationManager authenticationManager;
@@ -45,5 +48,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         String token = Jwts.builder()
                 .setSubject(((org.springframework.security.core.userdetails.User) authResult.getPrincipal()).getUsername())
                 .setExpiration(new Date(System.currentTimeMillis()+EXPIRATION_TIME))
+                .signWith(SignatureAlgorithm.ES512, SECRET.getBytes())
+                .compact();
+        response.addHeader(HEADER_STRING, TOKEN_PREFIX+token);
     }
 }
