@@ -10,6 +10,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import za.co.tangentsolutions.praticalassignment.domain.ApplicationUser;
+import za.co.tangentsolutions.praticalassignment.domain.Employee;
+import za.co.tangentsolutions.praticalassignment.domain.User;
 
 @SpringBootApplication
 @RestController
@@ -36,8 +38,8 @@ public class PraticalAssignmentApplication {
     }
 
     @GetMapping("/me")
-    public LoggedInUser me(Authentication authentication) {
-        return sendData(authentication, "http://staging.tangent.tngnt.co/api/user/me/", LoggedInUser.class);
+    public User me(Authentication authentication) {
+        return sendData(authentication, "http://staging.tangent.tngnt.co/api/user/me/", User.class);
     }
 
     private <T> T sendData(Authentication authentication, String url, Class<T> responseType) {
@@ -51,8 +53,8 @@ public class PraticalAssignmentApplication {
     }
 
     @GetMapping("/employee")
-    public Object employee(Authentication authentication){
-        return sendData(authentication, "http://staging.tangent.tngnt.co/api/employee/me/", Object.class);
+    public Employee employee(Authentication authentication){
+        return sendData(authentication, "http://staging.tangent.tngnt.co/api/employee/me/", Employee.class);
 
     }
 
