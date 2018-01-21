@@ -9,7 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import za.co.tangentsolutions.praticalassignment.domain.ApplicationUser;
-import za.co.tangentsolutions.praticalassignment.dao.LoginDetails;
+import za.co.tangentsolutions.praticalassignment.dto.LoginDetails;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;

@@ -1,4 +1,4 @@
-package za.co.tangentsolutions.praticalassignment.dao;
+package za.co.tangentsolutions.praticalassignment.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
