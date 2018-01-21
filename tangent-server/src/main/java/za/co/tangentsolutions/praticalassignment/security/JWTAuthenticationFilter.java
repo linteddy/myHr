@@ -8,7 +8,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import za.co.tangentsolutions.praticalassignment.domain.User;
+import za.co.tangentsolutions.praticalassignment.domain.ApplicationUser;
+import za.co.tangentsolutions.praticalassignment.dao.LoginDetails;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -30,15 +31,16 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         try {
-            User creds = new ObjectMapper()
-                    .readValue(request.getInputStream(), User.class);
+            LoginDetails user = new ObjectMapper()
+                    .readValue(request.getInputStream(), LoginDetails.class);
 
             return authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
-                            creds.getUsername(),
-                            creds.getPassword(),
+                            user,
+                            user.getPassword(),
                             new ArrayList<>())
             );
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -48,9 +50,10 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
         String token = Jwts.builder()
-                .setSubject(((org.springframework.security.core.userdetails.User) authResult.getPrincipal()).getUsername())
+                .setSubject(((ApplicationUser) authResult.getPrincipal()).getUsername())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
-                .signWith(SignatureAlgorithm.ES512, SECRET.getBytes())
+                .signWith(SignatureAlgorithm.HS512, SECRET.getBytes())
+                .claim("user", authResult.getPrincipal())
                 .compact();
         response.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
     }

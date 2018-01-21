@@ -1,4 +1,4 @@
-package za.co.tangentsolutions.praticalassignment;
+package za.co.tangentsolutions.praticalassignment.domain;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
