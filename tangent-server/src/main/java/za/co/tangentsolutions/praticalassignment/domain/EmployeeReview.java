@@ -14,5 +14,5 @@ public class EmployeeReview {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date date;
     private double salary;
-    private char type;
+    private EmployeeReviewType type;
 }
