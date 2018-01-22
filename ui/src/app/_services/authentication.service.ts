@@ -11,7 +11,7 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string) {
-    return this.http.post<any>('http://localhost:8090/api/v1/authenticate', {username: username, password: password}, httpOptions)
+    return this.http.post<any>('http://localhost:8090/login', {username: username, password: password}, httpOptions)
     // .map(user => {
     //     // login successful if there's a jwt token in the response
     //     if (user && user.token) {
@@ -21,10 +21,10 @@ export class AuthenticationService {
     //
     //     return user;
     // });
-      .map(token => {
-        localStorage.setItem('token', JSON.stringify(token));
-      })
-    ;
+    //   .map(token => {
+    //     localStorage.setItem('token', JSON.stringify(token));
+    //   })
+    // ;
   }
 
   logout() {
