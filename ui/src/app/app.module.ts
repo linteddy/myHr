@@ -11,6 +11,7 @@ import {AlertService, AuthenticationService, UserService} from './_services';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {LoginComponent} from './login/login.component';
 import {StatsComponent} from './stats/stats.component';
+import {AngularFontAwesomeModule} from 'angular-font-awesome';
 
 // used to create fake backend
 
@@ -19,7 +20,8 @@ import {StatsComponent} from './stats/stats.component';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    routing
+    routing,
+    AngularFontAwesomeModule
   ],
   declarations: [
     AppComponent,
