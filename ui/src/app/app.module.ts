@@ -8,8 +8,9 @@ import {routing} from './app.routing';
 import {AlertComponent} from './_directives';
 import {AuthGuard} from './_guards';
 import {AlertService, AuthenticationService, UserService} from './_services';
-import {HomeComponent} from './home';
-import {LoginComponent} from './login';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {LoginComponent} from './login/login.component';
+import {StatsComponent} from './stats/stats.component';
 
 // used to create fake backend
 
@@ -23,8 +24,9 @@ import {LoginComponent} from './login';
   declarations: [
     AppComponent,
     AlertComponent,
-    HomeComponent,
+    DashboardComponent,
     LoginComponent,
+    StatsComponent,
   ],
   providers: [
     AuthGuard,

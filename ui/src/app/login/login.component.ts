@@ -2,7 +2,6 @@
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { AlertService, AuthenticationService } from '../_services';
-import {tokenize} from '@angular/compiler/src/ml_parser/lexer';
 
 @Component({
     moduleId: module.id.toString(),
