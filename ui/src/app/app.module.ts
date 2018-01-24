@@ -13,9 +13,8 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {AuthGuard} from './_guards/auth.guard';
 import {AlertService} from './_services/alert.service';
 import {AuthenticationService} from './_services/authentication.service';
-import {UserService} from './_services/user.service';
+import {EmployeeService} from './_services/employee.service';
 
-// used to create fake backend
 
 @NgModule({
   imports: [
@@ -36,7 +35,7 @@ import {UserService} from './_services/user.service';
     AuthGuard,
     AlertService,
     AuthenticationService,
-    UserService
+    EmployeeService
   ],
   bootstrap: [AppComponent]
 })
