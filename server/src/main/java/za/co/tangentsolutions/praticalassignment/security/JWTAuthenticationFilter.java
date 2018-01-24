@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import za.co.tangentsolutions.praticalassignment.domain.ApplicationUser;
+import za.co.tangentsolutions.praticalassignment.domain.Token;
 import za.co.tangentsolutions.praticalassignment.dto.LoginDetails;
 
 import javax.servlet.FilterChain;
@@ -56,5 +57,10 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .claim("user", authResult.getPrincipal())
                 .compact();
         response.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
+        Token tokenObject = new Token();
+        tokenObject.setToken(TOKEN_PREFIX + token);
+        String json = new ObjectMapper().writeValueAsString(tokenObject);
+        response.getWriter().print(json);
+        response.getWriter().flush();
     }
 }

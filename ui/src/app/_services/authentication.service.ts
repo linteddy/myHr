@@ -10,8 +10,7 @@ export class AuthenticationService {
   login(username: string, password: string) {
     return this.http
       .post<any>('http://localhost:8090/login', {username: username, password: password}, {
-        headers: new HttpHeaders({'Content-Type': 'application/json'}),
-        observe: 'response'
+        headers: new HttpHeaders({'Content-Type': 'application/json'})
       });
 
   }

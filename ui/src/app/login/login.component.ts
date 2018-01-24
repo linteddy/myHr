@@ -33,12 +33,14 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(this.model.username, this.model.password)
       .subscribe(
         data => {
-          const token = data.headers.get('Authorization');
-          localStorage.setItem('token', token);
+          console.log(data);
+          localStorage.setItem('token', data);
           this.router.navigate([this.returnUrl]);
         },
         error => {
-          this.alertService.error(error);
+          console.log(error
+          );
+          this.alertService.error(error.toString());
           this.loading = false;
         });
   }
