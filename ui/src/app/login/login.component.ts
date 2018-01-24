@@ -1,44 +1,45 @@
-﻿import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+﻿import {Component, OnInit} from '@angular/core';
+import {Router, ActivatedRoute} from '@angular/router';
+import {AuthenticationService} from '../_services/authentication.service';
+import {AlertService} from '../_services/alert.service';
 
-import { AlertService, AuthenticationService } from '../_services';
 
 @Component({
-    moduleId: module.id.toString(),
-    templateUrl: 'login.component.html'
+  moduleId: module.id.toString(),
+  templateUrl: 'login.component.html'
 })
 
 export class LoginComponent implements OnInit {
-    model: any = {};
-    loading = false;
-    returnUrl: string;
+  model: any = {};
+  loading = false;
+  returnUrl: string;
 
-    constructor(
-        private route: ActivatedRoute,
-        private router: Router,
-        private authenticationService: AuthenticationService,
-        private alertService: AlertService) { }
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private authenticationService: AuthenticationService,
+              private alertService: AlertService) {
+  }
 
-    ngOnInit() {
-        // reset login status
-        this.authenticationService.logout();
+  ngOnInit() {
+    // reset login status
+    this.authenticationService.logout();
 
-        // get return url from route parameters or default to '/'
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    }
+    // get return url from route parameters or default to '/'
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+  }
 
-    login() {
-        this.loading = true;
-        this.authenticationService.login(this.model.username, this.model.password)
-            .subscribe(
-                data => {
-                  // console.log('data ' + localStorage.getItem('token'));
-                  console.log('successs');
-                    this.router.navigate([this.returnUrl]);
-                },
-                error => {
-                    this.alertService.error(error);
-                    this.loading = false;
-                });
-    }
+  login() {
+    this.loading = true;
+    this.authenticationService.login(this.model.username, this.model.password)
+      .subscribe(
+        data => {
+          const token = data.headers.get('Authorization');
+          localStorage.setItem('token', token);
+          this.router.navigate([this.returnUrl]);
+        },
+        error => {
+          this.alertService.error(error);
+          this.loading = false;
+        });
+  }
 }

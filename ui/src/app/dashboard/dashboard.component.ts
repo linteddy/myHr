@@ -1,7 +1,8 @@
 ﻿import { Component, OnInit } from '@angular/core';
 
-import { User } from '../_models';
-import { UserService } from '../_services';
+import {User} from '../_models/user';
+import {UserService} from '../_services/user.service';
+import {AuthenticationService} from '../_services/authentication.service';
 
 @Component({
     selector: 'app-dashboard',
@@ -13,7 +14,7 @@ export class DashboardComponent implements OnInit {
     currentUser: User;
     users: User[] = [];
 
-    constructor(private userService: UserService) {
+    constructor(private userService: UserService, private authService: AuthenticationService) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 
@@ -24,4 +25,7 @@ export class DashboardComponent implements OnInit {
     private loadAllUsers() {
         this.userService.getAll().subscribe(users => { this.users = users; });
     }
+    logout(){
+      this.authService.logout();
+}
 }

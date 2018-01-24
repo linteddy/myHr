@@ -6,12 +6,14 @@ import {AppComponent} from './app.component';
 import {routing} from './app.routing';
 
 import {AlertComponent} from './_directives';
-import {AuthGuard} from './_guards';
-import {AlertService, AuthenticationService, UserService} from './_services';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {LoginComponent} from './login/login.component';
 import {StatsComponent} from './stats/stats.component';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import {AuthGuard} from './_guards/auth.guard';
+import {AlertService} from './_services/alert.service';
+import {AuthenticationService} from './_services/authentication.service';
+import {UserService} from './_services/user.service';
 
 // used to create fake backend
 
@@ -21,7 +23,7 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
     FormsModule,
     HttpClientModule,
     routing,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
   ],
   declarations: [
     AppComponent,
@@ -34,8 +36,7 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
     AuthGuard,
     AlertService,
     AuthenticationService,
-    UserService,
-
+    UserService
   ],
   bootstrap: [AppComponent]
 })
