@@ -1,6 +1,7 @@
 ﻿import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import 'rxjs/add/operator/map';
+import {Token} from '../_models/token';
 
 @Injectable()
 export class AuthenticationService {
@@ -9,7 +10,7 @@ export class AuthenticationService {
 
   login(username: string, password: string) {
     return this.http
-      .post<any>('http://localhost:8090/login', {username: username, password: password}, {
+      .post<Token>('http://localhost:8090/login', {username: username, password: password}, {
         headers: new HttpHeaders({'Content-Type': 'application/json'})
       });
 

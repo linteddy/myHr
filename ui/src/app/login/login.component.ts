@@ -1,5 +1,5 @@
 ﻿import {Component, OnInit} from '@angular/core';
-import {Router, ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AuthenticationService} from '../_services/authentication.service';
 import {AlertService} from '../_services/alert.service';
 
@@ -24,8 +24,6 @@ export class LoginComponent implements OnInit {
     // reset login status
     this.authenticationService.logout();
 
-    // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   login() {
@@ -33,12 +31,14 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(this.model.username, this.model.password)
       .subscribe(
         data => {
-          console.log(data);
-          localStorage.setItem('token', data);
-          this.router.navigate([this.returnUrl]);
+          const token = data.token;
+          if (token) {
+            localStorage.setItem('token', token);
+            this.router.navigate(['/dashboard']);
+          }
         },
         error => {
-          this.alertService.error(error.getItem('error'));
+          this.alertService.error(error);
           this.loading = false;
         });
   }
