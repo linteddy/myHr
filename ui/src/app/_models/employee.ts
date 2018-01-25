@@ -10,7 +10,7 @@ export class Employee{
   phone_number: string;
   email: string;
   github_user: string;
-  birth_date: string;
+  birth_date: Date;
   gender: string;
   race: string;
   years_worked: number;

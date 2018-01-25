@@ -2,6 +2,7 @@ package za.co.tangentsolutions.praticalassignment.web;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import za.co.tangentsolutions.praticalassignment.domain.Employee;
@@ -34,6 +35,11 @@ public class EmployeeController {
     @GetMapping("/employees")
     public List<Employee> employees(Authentication authentication) {
         return tangentRestService.sendRequest("http://staging.tangent.tngnt.co/api/employee/", List.class);
+    }
+
+    @GetMapping("/employees/{filter}")
+    public List<Employee> filterEmployees(@PathVariable("filer") String filter, Authentication authentication) {
+        return tangentRestService.sendRequest("http://staging.tangent.tngnt.co/api/employee/?", List.class);
     }
 
 }

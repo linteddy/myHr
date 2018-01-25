@@ -14,7 +14,8 @@ import {AuthGuard} from './_guards/auth.guard';
 import {AlertService} from './_services/alert.service';
 import {AuthenticationService} from './_services/authentication.service';
 import {EmployeeService} from './_services/employee.service';
-import {JwtInterceptor} from './_helpers/jwt.interceptor';
+import {JwtInterceptor} from './_helpers/jwt.intercepto;
+import { ProfileComponent } from './profile/profile.component'r';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import {JwtInterceptor} from './_helpers/jwt.interceptor';
     AlertComponent,
     DashboardComponent,
     LoginComponent,
-    StatsComponent,
+    StatsCompone,
+    ProfileComponentnt,
   ],
   providers: [
     AuthGuard,

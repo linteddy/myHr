@@ -10,20 +10,8 @@ export class EmployeeService {
     getAll() {
         return this.http.get<Employee[]>('/api/v1/employees');
     }
-
     getById(id: number) {
         return this.http.get('/api/users/' + id);
     }
 
-    create(user: User) {
-        return this.http.post('/api/users', user);
-    }
-
-    update(user: User) {
-        return this.http.put('/api/users/' + user.id, user);
-    }
-
-    delete(id: number) {
-        return this.http.delete('/api/users/' + id);
-    }
 }
