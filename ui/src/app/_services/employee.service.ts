@@ -14,4 +14,7 @@ export class EmployeeService {
         return this.http.get('/api/users/' + id);
     }
 
+    getProfile(){
+      return this.http.get<Employee>('/api/v1/profile');
+    }
 }

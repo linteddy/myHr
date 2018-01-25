@@ -12,7 +12,6 @@ import {Employee} from '../_models/employee';
 })
 
 export class DashboardComponent implements OnInit {
-  currentUser: User;
   employees: Employee[] = [];
   maleEmployees: Employee[] = [];
   numberOfEmployees: number;
@@ -22,8 +21,7 @@ export class DashboardComponent implements OnInit {
   employeesWithBirthdaysThisMonth: Employee[];
   numberOfBirthdaysThisMonth: number;
 
-  constructor(private userService: EmployeeService, private authService: AuthenticationService) {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  constructor(private employeeService: EmployeeService, private authService: AuthenticationService) {
   }
 
   ngOnInit() {
@@ -31,7 +29,7 @@ export class DashboardComponent implements OnInit {
   }
 
   private loadAllUsers() {
-    this.userService.getAll().subscribe(data => {
+    this.employeeService.getAll().subscribe(data => {
       this.employees = data;
       this.numberOfEmployees = this.employees.length;
       this.loadFemaleEmployees();
