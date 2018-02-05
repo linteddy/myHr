@@ -16,7 +16,7 @@
         <li><a routerLink="/login" (click)="logout()"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
       </ul>
       <form class="navbar-form navbar-right">
-        <input type="text" class="form-control" placeholder="Search...">
+        <input type="text"placeholder="Search..." [(ngModel)]="filterText" [ngModelOptions]="{standalone: true}">
       </form>
     </div>
   </div>
@@ -68,7 +68,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let employee of employees">
+          <tr *ngFor="let employee of employees | employeeSearch: filterText">
             <td>{{employee.user.first_name}}</td>
             <td>{{employee.user.last_name}}</td>
             <td>{{employee.position.name}}</td>

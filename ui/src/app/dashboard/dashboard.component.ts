@@ -1,9 +1,8 @@
 ﻿import {Component, OnInit} from '@angular/core';
-
-import {User} from '../_models/user';
 import {AuthenticationService} from '../_services/authentication.service';
 import {EmployeeService} from '../_services/employee.service';
 import {Employee} from '../_models/employee';
+import {EmployeeSearchPipe} from '../_helpers/employeeSearch.pipe';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,6 +19,7 @@ export class DashboardComponent implements OnInit {
   femaleEmployees: Employee[];
   employeesWithBirthdaysThisMonth: Employee[];
   numberOfBirthdaysThisMonth: number;
+  filterText: string;
 
   constructor(private employeeService: EmployeeService, private authService: AuthenticationService) {
   }

@@ -16,6 +16,7 @@ import {AuthenticationService} from './_services/authentication.service';
 import {EmployeeService} from './_services/employee.service';
 import {ProfileComponent} from './profile/profile.component';
 import {JwtInterceptor} from './_helpers/jwt.interceptor';
+import {EmployeeSearchPipe} from './_helpers/employeeSearch.pipe';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import {JwtInterceptor} from './_helpers/jwt.interceptor';
     LoginComponent,
     StatsComponent,
     ProfileComponent,
+    EmployeeSearchPipe
   ],
   providers: [
     AuthGuard,
