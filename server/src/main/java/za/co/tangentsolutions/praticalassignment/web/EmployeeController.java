@@ -33,12 +33,12 @@ public class EmployeeController {
     }
 
     @GetMapping("/employees")
-    public List<Employee> employees(Authentication authentication) {
+    public List employees() {
         return tangentRestService.sendRequest("http://staging.tangent.tngnt.co/api/employee/", List.class);
     }
 
     @GetMapping("/employees/{filter}")
-    public List<Employee> filterEmployees(@PathVariable("filer") String filter, Authentication authentication) {
+    public List filterEmployees(@PathVariable("filter") String filter) {
         return tangentRestService.sendRequest("http://staging.tangent.tngnt.co/api/employee/?", List.class);
     }
 

@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 @Ignore
 public class BaseMvcTest {
     protected MockMvc mockMvc;
-    private ObjectMapper mapper = new ObjectMapper();
+    protected ObjectMapper mapper = new ObjectMapper();
 
     @Autowired
     private WebApplicationContext webApplicationContext;
