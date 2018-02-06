@@ -3,7 +3,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AuthenticationService} from '../_services/authentication.service';
 import {AlertService} from '../_services/alert.service';
 
-
 @Component({
   moduleId: module.id.toString(),
   templateUrl: 'login.component.html'
@@ -12,7 +11,7 @@ import {AlertService} from '../_services/alert.service';
 export class LoginComponent implements OnInit {
   model: any = {};
   loading = false;
-  returnUrl: string;
+  return: string;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -23,6 +22,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     // reset login status
     this.authenticationService.logout();
+    this.route.queryParams
+      .subscribe(params => this.return = params['return'] || '/dashboard');
 
   }
 
@@ -34,11 +35,12 @@ export class LoginComponent implements OnInit {
           const token = data.token;
           if (token) {
             localStorage.setItem('token', token);
-            this.router.navigate(['/dashboard']);
+            this.router.navigateByUrl(this.return);
           }
         },
         error => {
-          this.alertService.error(error);
+          const message = (error.status === 401) ? 'Incorrect username or password' : 'Oops something went wrong, please try again later';
+          this.alertService.error(message);
           this.loading = false;
         });
   }

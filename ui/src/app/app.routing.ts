@@ -7,11 +7,11 @@ import {ProfileComponent} from './profile/profile.component';
 
 const appRoutes: Routes = [
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
-  {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
+  {path: '', redirectTo: '/dashboard', pathMatch: 'full', canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   // otherwise redirect to home
-  {path: '**', redirectTo: '/dashboard'}
+  {path: '**', redirectTo: '/dashboard', canActivate: [AuthGuard]}
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);
