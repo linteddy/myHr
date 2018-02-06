@@ -10,9 +10,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+import za.co.tangentsolutions.praticalassignment.domain.ApplicationUser;
 import za.co.tangentsolutions.praticalassignment.domain.Token;
 import za.co.tangentsolutions.praticalassignment.dto.LoginDetails;
-import za.co.tangentsolutions.praticalassignment.domain.ApplicationUser;
 
 import java.util.ArrayList;
 

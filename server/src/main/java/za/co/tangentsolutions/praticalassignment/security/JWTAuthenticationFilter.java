@@ -13,7 +13,6 @@ import za.co.tangentsolutions.praticalassignment.domain.Token;
 import za.co.tangentsolutions.praticalassignment.dto.LoginDetails;
 
 import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;

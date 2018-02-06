@@ -1,7 +1,6 @@
 package za.co.tangentsolutions.praticalassignment.domain;
 
 
-import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;

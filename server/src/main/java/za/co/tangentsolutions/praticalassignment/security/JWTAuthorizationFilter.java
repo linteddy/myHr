@@ -1,6 +1,5 @@
 package za.co.tangentsolutions.praticalassignment.security;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -13,11 +12,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
 
-import static za.co.tangentsolutions.praticalassignment.security.SecurityConstants.HEADER_STRING;
-import static za.co.tangentsolutions.praticalassignment.security.SecurityConstants.SECRET;
-import static za.co.tangentsolutions.praticalassignment.security.SecurityConstants.TOKEN_PREFIX;
+import static za.co.tangentsolutions.praticalassignment.security.SecurityConstants.*;
 
 public class JWTAuthorizationFilter  extends BasicAuthenticationFilter{
     public JWTAuthorizationFilter(AuthenticationManager authManager) {

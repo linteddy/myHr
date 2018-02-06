@@ -9,6 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import za.co.tangentsolutions.praticalassignment.domain.ApplicationUser;
+import za.co.tangentsolutions.praticalassignment.security.SecurityConstants;
 
 @Service
 public class TangentRestService {
@@ -18,7 +19,7 @@ public class TangentRestService {
         String token = ((ApplicationUser) authentication.getPrincipal()).getToken();
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", "Token " + token);
+        headers.add(SecurityConstants.HEADER_STRING, "Token " + token);
         HttpEntity httpEntity = new HttpEntity(headers);
         ResponseEntity<T> responseEntity = restTemplate.exchange(url, HttpMethod.GET, httpEntity, responseType);
         return responseEntity.getBody();
