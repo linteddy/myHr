@@ -11,17 +11,21 @@ export class EmployeeSearchPipe implements PipeTransform {
         if (item.user.first_name.toLowerCase().indexOf(filterText.toLowerCase()) !== -1) {
           return true;
         }
-        if ( item.email.toLowerCase().indexOf(filterText.toLowerCase()) !== -1) {
+        if (item.email.toLowerCase().indexOf(filterText.toLowerCase()) !== -1) {
           return true;
         }
         if (item.user.last_name.toLowerCase().indexOf(filterText.toLowerCase()) !== -1) {
           return true;
         }
+        if (item.position.name.toLowerCase().indexOf(filterText.toLowerCase()) !== -1) {
+          return true;
+        }
+        if(item.github_user.toLowerCase().indexOf(filterText.toLowerCase()) !== -1) {
+          return true;
+        }
         return false;
       });
     }
-    else {
-      return items;
-    }
+    return items;
   }
 }

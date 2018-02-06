@@ -9,9 +9,9 @@ const appRoutes: Routes = [
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
-  {path: 'profile', component: ProfileComponent},
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   // otherwise redirect to home
-  {path: '**', redirectTo: '/home'}
+  {path: '**', redirectTo: '/dashboard'}
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);
